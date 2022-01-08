@@ -23,17 +23,18 @@ namespace ReminderApp
         public MainWindow()
         {
             InitializeComponent();
-            myTextblock.Text = DateTime.Now.ToString();
+            myTextblock.Text = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            myTextblock.Text = Calendar.SelectedDate.ToString();
+            var date = DateTime.Parse(Calendar.SelectedDate.ToString());
+            myTextblock.Text = date.ToString("yyyy-MM-dd");
         }
 
         private void EditButton1_Click(object sender, RoutedEventArgs e)
         {
-            AddEvent addEvent = new AddEvent(Calendar.SelectedDate.ToString());
+            AddEvent addEvent = new AddEvent(myTextblock.Text);
             addEvent.Show();
         }
     }

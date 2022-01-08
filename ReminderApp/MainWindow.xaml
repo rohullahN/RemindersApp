@@ -6,13 +6,11 @@
         xmlns:local="clr-namespace:ReminderApp"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="300">
-    <StackPanel x:Name="EditButton">
-        <Viewbox Stretch="Uniform">
-            <Calendar x:Name="Calendar" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
-
+    <StackPanel>
+        <Viewbox Stretch="UniformToFill">
+            <Calendar x:Name="Calendar" SelectedDatesChanged="Calendar_SelectedDatesChanged" />
         </Viewbox>
         <TextBlock x:Name="myTextblock" Text=""/>
-        <Button x:Name="EditButton1" Content="Edit" Margin="199,30,40,0" Width="50" Click="EditButton1_Click"/>
-
+        <Button x:Name="EditButton1" Content="Edit" Margin="190,40,0,0" Width="50" Click="EditButton1_Click"/>
     </StackPanel>
 </Window>
