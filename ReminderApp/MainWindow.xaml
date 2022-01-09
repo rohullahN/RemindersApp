@@ -7,10 +7,49 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="300">
     <StackPanel>
-        <Viewbox Stretch="UniformToFill">
-            <Calendar x:Name="Calendar" SelectedDatesChanged="Calendar_SelectedDatesChanged" />
-        </Viewbox>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,20">
+            <TextBlock x:Name="WelcomeText" Text="" FontFamily="Impact" FontSize="18" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+           <TextBlock Text="Event Date: "/> 
+           <DatePicker x:Name="datePicker" Width="200" Margin="20,0,0,0" SelectedDateFormat="Short" SelectedDateChanged="datePicker_SelectedDateChanged"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <TextBlock Text="Event Time: "/>
+            <ComboBox x:Name="TimePicker" FontSize="20" Width="100" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="31" MaxDropDownHeight="200" Margin="20,0,0,0" IsEditable="True" DropDownClosed="TimePicker_DropDownClosed" LostFocus="TimePicker_LostFocus">
+
+                <ComboBoxItem Content="12:00"/>
+                <ComboBoxItem Content="12:30"/>
+                <ComboBoxItem Content="1:00"/>
+                <ComboBoxItem Content="1:30"/>
+                <ComboBoxItem Content="2:00"/>
+                <ComboBoxItem Content="2:30"/>
+                <ComboBoxItem Content="3:00"/>
+                <ComboBoxItem Content="3:30"/>
+                <ComboBoxItem Content="4:00"/>
+                <ComboBoxItem Content="4:30"/>
+                <ComboBoxItem Content="5:00"/>
+                <ComboBoxItem Content="5:30"/>
+                <ComboBoxItem Content="6:00"/>
+                <ComboBoxItem Content="6:30"/>
+                <ComboBoxItem Content="7:00"/>
+                <ComboBoxItem Content="7:30"/>
+                <ComboBoxItem Content="8:00"/>
+                <ComboBoxItem Content="8:30"/>
+                <ComboBoxItem Content="9:00"/>
+                <ComboBoxItem Content="9:30"/>
+                <ComboBoxItem Content="10:00"/>
+                <ComboBoxItem Content="10:30"/>
+                <ComboBoxItem Content="11:00"/>
+                <ComboBoxItem Content="11:30"/>
+            </ComboBox>
+            <ComboBox x:Name="AmPmPicker" FontSize="20" Width="70" HorizontalAlignment="Right" Height="31" MaxDropDownHeight="200" Margin="15,0,0,0" LostFocus="AmPmPicker_LostFocus">
+                <ComboBoxItem Content="AM"/>
+                <ComboBoxItem Content="PM"/>
+            </ComboBox>
+        </StackPanel>
         <TextBlock x:Name="myTextblock" Text=""/>
+        <TextBox />
         <Button x:Name="EditButton1" Content="Edit" Margin="190,40,0,0" Width="50" Click="EditButton1_Click"/>
     </StackPanel>
 </Window>

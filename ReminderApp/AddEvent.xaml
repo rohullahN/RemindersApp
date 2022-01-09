@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="AddEvent" Height="400" Width="300">
     <StackPanel>
-        <TextBlock x:Name="EventDateText" Text="" TextAlignment="Center" Width="100" Height="40" FontFamily="Segoe UI Black" FontSize="18"/>
-        <StackPanel Orientation="Horizontal" Margin="0,40,0,0">
+        <TextBlock x:Name="EventDateText" Text="" TextAlignment="Center" Height="40" FontFamily="Segoe UI Black" FontSize="18"/>
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
             <Label Content="Time: " Width="70" HorizontalAlignment="Left" FontSize="20"/>
             <ComboBox x:Name="TimePicker" FontSize="20" Width="100" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="31" MaxDropDownHeight="200" Margin="20,0,0,0">
                 <ComboBoxItem Content="12:00"/>
@@ -42,11 +42,13 @@
             </ComboBox>
         </StackPanel>
         <StackPanel>
-            <Label Content="Event Description: " Width="300" HorizontalAlignment="Left" FontSize="20"/>
+            <Label Content="Event Description: " Width="292" HorizontalAlignment="Left" FontSize="20"/>
             <TextBox x:Name="EventDescripText" Height="90" TextAlignment="Left" FontSize="15" TextWrapping="Wrap"/>
         </StackPanel>
-        <StackPanel Margin="50,10,50,40">
-            <CheckBox />
+        <StackPanel>
+            <Label Content="Email Address: " Width="292" HorizontalAlignment="Left" FontSize="20"/>
+            <TextBox x:Name="EmailText" Height="30" TextAlignment="Left" FontSize="15" TextWrapping="Wrap"/>
         </StackPanel>
+        <Button x:Name="AddEventButton" Content="Set Reminder" Margin="150,40,0,0" Width="80" Click="AddEventButton_Click"/>
     </StackPanel>
 </Window>

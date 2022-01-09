@@ -19,6 +19,7 @@ namespace ReminderApp
     /// </summary>
     public partial class AddEvent : Window
     {
+        private string time;
         public AddEvent()
         {
             InitializeComponent();
@@ -28,6 +29,16 @@ namespace ReminderApp
         {
             InitializeComponent();
             EventDateText.Text = date;
+        }
+
+        private void AddEventButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void dtPicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+           // EventDateText.Text = dtPicker.SelectedDate.ToString();
         }
     }
 }

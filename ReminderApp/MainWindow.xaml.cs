@@ -23,19 +23,64 @@ namespace ReminderApp
         public MainWindow()
         {
             InitializeComponent();
-            myTextblock.Text = DateTime.Now.ToString("yyyy-MM-dd");
+            WelcomeText.Text = "Welcome " + Environment.UserName;
+           // myTextblock.Text = DateTime.Now.ToString("MMMM dd, yyyy");
         }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
-            var date = DateTime.Parse(Calendar.SelectedDate.ToString());
-            myTextblock.Text = date.ToString("yyyy-MM-dd");
+
+            //var date = DateTime.Parse(Calendar.SelectedDate.ToString());
+           // DateTime dt = new DateTime(date.Year, date.Month, date.Day, 13, 20, 0);
+           //date.Add(new TimeSpan(4, 30, 0));
+
+           // myTextblock.Text = dt.ToString();
         }
 
         private void EditButton1_Click(object sender, RoutedEventArgs e)
         {
-            AddEvent addEvent = new AddEvent(myTextblock.Text);
-            addEvent.Show();
+            //string date = datePicker.Text;
+            //string time = TimePicker.Text;
+            //DateTime dt = DateTime.Parse(date + " " + time);
+            //myTextblock.Text = dt.ToString();
+        }
+
+        private void datePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            myTextblock.Text = datePicker.SelectedDate.ToString();
+        }
+
+        private DateTime GetDateTime()
+        {
+            DateTime dt = new DateTime();
+            if (datePicker.Text != null)
+            {
+                string date = datePicker.Text;
+                string time = TimePicker.Text + AmPmPicker.Text;
+                dt = DateTime.Parse(date + " " + time);
+                // myTextblock.Text = dt.ToString();
+                
+            }
+            else
+            {
+                MessageBox.Show("You must pick a date first for your reminder.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            return dt;
+        }
+
+        private void TimePicker_DropDownClosed(object sender, EventArgs e)
+        {
+            myTextblock.Text = GetDateTime().ToString();
+        }
+
+        private void TimePicker_LostFocus(object sender, RoutedEventArgs e)
+        {
+            myTextblock.Text = GetDateTime().ToString();
+        }
+
+        private void AmPmPicker_LostFocus(object sender, RoutedEventArgs e)
+        {
+            myTextblock.Text = GetDateTime().ToString();
         }
     }
 }
