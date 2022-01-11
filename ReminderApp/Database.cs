@@ -20,23 +20,16 @@ namespace ReminderApp
 
         private string DatabaseName { get; set; }
 
-        private string ReminderTime { get; set; }
-        private string ReminderDate { get; set; }
-        private string Email { get; set; }
-        private string Message { get; set; }
 
 
-        public Database(string rDate, string rTime, string email, string message)
+        public Database()
         {
             Server = ConfigurationManager.AppSettings.Get("Server");
             User = ConfigurationManager.AppSettings.Get("User");
             Port = ConfigurationManager.AppSettings.Get("Port");
             Password = ConfigurationManager.AppSettings.Get("Password");
             DatabaseName = ConfigurationManager.AppSettings.Get("DatabaseName");
-            ReminderTime = rTime;
-            ReminderDate = rDate;
-            Email = email;
-            Message = message;
+
         }
 
         public override string ToString()
@@ -44,11 +37,10 @@ namespace ReminderApp
             return $"server={Server};user={User};database={DatabaseName};port={Port};password={Password}; convert zero datetime=True";
         }
 
-        public void InsertReminder()
+        public void InsertReminder(ReminderDetails reminderDetails)
         {
-            string sql = "INSERT INTO Reminders (ReminderTime, Message, Email, ReminderDate) " +
-                "VALUES (@ReminderTime, @Message, @Email, @ReminderDate)";
-
+            string sql = "INSERT INTO Reminders (ReminderTime, Message, Email, IsActive, ThreeDayReminder, OneDayReminder, SameDayReminder) " +
+                "VALUES (@ReminderTime, @Message, @Email, @IsActive, @ThreeDayReminder, @OneDayReminder, @SameDayReminder)";
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(ToString()))
@@ -58,13 +50,13 @@ namespace ReminderApp
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
                         // Populate all arguments in the insert
-                        cmd.Parameters.AddWithValue("@ReminderTime", ReminderTime);
-                        cmd.Parameters.AddWithValue("@Message", Message);
-                        cmd.Parameters.AddWithValue("@Email", Email);
-                        cmd.Parameters.AddWithValue("@ReminderDate", ReminderDate);
+                        cmd.Parameters.AddWithValue("@ReminderTime", reminderDetails.ReminderTime);
+                        cmd.Parameters.AddWithValue("@Message", reminderDetails.Message);
+                        cmd.Parameters.AddWithValue("@Email", reminderDetails.Email);
                         cmd.Parameters.AddWithValue("@IsActive", 1);
-
-
+                        cmd.Parameters.AddWithValue("@ThreeDayReminder", reminderDetails.ThreeDayReminder);
+                        cmd.Parameters.AddWithValue("@OneDayReminder", reminderDetails.OneDayReminder);
+                        cmd.Parameters.AddWithValue("@SameDayReminder", reminderDetails.SameDayReminder);
                         // Execute the insertion and check the number of rows affected
                         // An exception will be thrown if the column is repeated
                         cmd.ExecuteNonQuery();
@@ -76,6 +68,37 @@ namespace ReminderApp
             {
                 throw;
             }
+        }
+
+        public List<ReminderDetails> GetAllReminders()
+        {
+            List<ReminderDetails> reminders = new List<ReminderDetails>();
+            string sql = "SELECT * FROM Reminders WHERE IsActive=1";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(ToString()))
+                {
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    conn.Open();
+                    MySqlDataReader rdr = cmd.ExecuteReader();
+                    if (rdr.HasRows)
+                    {
+                        while (rdr.Read())
+                        {
+                            ReminderDetails reminderDetails = new ReminderDetails();
+                            reminderDetails.ReminderTime = DateTime.Parse(rdr["ReminderTime"].ToString());
+                            reminderDetails.Message = rdr["Message"].ToString();
+                            reminderDetails.Email = rdr["Email"].ToString();
+                            reminders.Add(reminderDetails);
+                        }
+                    }
+                }
+            }
+            catch(Exception)
+            {
+                throw;
+            }
+            return reminders;
         }
     }
 

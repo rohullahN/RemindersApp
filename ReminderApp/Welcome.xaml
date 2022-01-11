@@ -1,0 +1,23 @@
+﻿<Window x:Class="ReminderApp.Welcome"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ReminderApp"
+        mc:Ignorable="d"
+        Title="KoolReminders" Height="400" Width="310">
+    <StackPanel>
+        <StackPanel VerticalAlignment="center" HorizontalAlignment="center" Margin="0,0,0,20">
+            <TextBlock Text="Kool Reminders" FontSize="18" HorizontalAlignment="center" Margin="0,20,0,20" />
+            <Image Source="logo.png" Height="125" Margin="66,0,72,0" Width="154" />
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,0,0,20">
+            <TextBlock x:Name="welcomeText" Text="" FontFamily="Impact" FontSize="18" Width="120" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical">
+            <Button x:Name="SetAReminder" Content="Set A Reminder" Height="40" Width="110" Margin="0,0,0,0" Click="SetAReminder_Click"/>
+            <Button x:Name="DeleteAReminder" Content="Delete A Reminder" Height="40" Width="110" Margin="0,10,0,0"/>
+        </StackPanel>
+
+    </StackPanel>
+</Window>

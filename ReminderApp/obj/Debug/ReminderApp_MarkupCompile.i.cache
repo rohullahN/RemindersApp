@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\rohul\Desktop\RemindersApp\ReminderApp\App.xaml
-2-933606243
+3-2451330
 
-81789266337
+10-1328478768
 152141524029
-AddEvent.xaml;MainWindow.xaml;
+DeleteReminder.xaml;SetReminder.xaml;Welcome.xaml;
 
-False
+True
 

@@ -1,14 +1,14 @@
-﻿<Window x:Class="ReminderApp.MainWindow"
+﻿<Window x:Class="ReminderApp.SetReminder"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReminderApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="300">
+        Title="KoolReminders" Height="400" Width="310">
     <StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,20">
-            <TextBlock x:Name="WelcomeText" Text="" FontFamily="Impact" FontSize="18" />
+            <TextBlock x:Name="SetReminderText" Text="Set A Reminder" FontFamily="Impact" FontSize="18" Width="120" />
         </StackPanel>
         <StackPanel Orientation="Horizontal">
            <TextBlock Text="Event Date: "/> 
@@ -16,7 +16,7 @@
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
             <TextBlock Text="Event Time: "/>
-            <ComboBox x:Name="TimePicker" FontSize="20" Width="100" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="31" MaxDropDownHeight="200" Margin="20,0,0,0" IsEditable="True" DropDownClosed="TimePicker_DropDownClosed" LostFocus="TimePicker_LostFocus">
+            <ComboBox x:Name="TimePicker" FontSize="20" Width="100" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="31" MaxDropDownHeight="200" Margin="20,0,0,0" DropDownClosed="TimePicker_DropDownClosed" DropDownOpened="TimePicker_DropDownOpened">
 
                 <ComboBoxItem Content="12:00"/>
                 <ComboBoxItem Content="12:30"/>
@@ -43,13 +43,26 @@
                 <ComboBoxItem Content="11:00"/>
                 <ComboBoxItem Content="11:30"/>
             </ComboBox>
-            <ComboBox x:Name="AmPmPicker" FontSize="20" Width="70" HorizontalAlignment="Right" Height="31" MaxDropDownHeight="200" Margin="15,0,0,0" LostFocus="AmPmPicker_LostFocus">
+            <ComboBox x:Name="AmPmPicker" FontSize="20" Width="70" HorizontalAlignment="Right" Height="31" MaxDropDownHeight="200" Margin="15,0,0,0" DropDownClosed="AmPmPicker_DropDownClosed" DropDownOpened="AmPmPicker_DropDownOpened">
                 <ComboBoxItem Content="AM"/>
                 <ComboBoxItem Content="PM"/>
             </ComboBox>
         </StackPanel>
-        <TextBlock x:Name="myTextblock" Text=""/>
-        <TextBox />
-        <Button x:Name="EditButton1" Content="Edit" Margin="190,40,0,0" Width="50" Click="EditButton1_Click"/>
+        <TextBlock x:Name="myTextblock" Text="" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Event Title: "/>
+            <TextBox  x:Name="EventText" Width="200" Margin="23,0,0,0" Height="60"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+            <TextBlock Text="Email: "/> 
+            <TextBox  x:Name="EmailText" Width="200" Margin="50,0,0,0" Height="30"/>
+        </StackPanel>
+        <StackPanel  Margin="0,20,0,0">
+            <CheckBox x:Name="ThreeDay" Content="Three Day reminder" FontSize="12" Click="ThreeDay_Click"></CheckBox>
+            <CheckBox x:Name="OneDay" Content="One Day reminder" FontSize="12" Click="OneDay_Click"></CheckBox>
+            <CheckBox x:Name="SameDay" Content="Same Day reminder" FontSize="12" Click="SameDay_Click"></CheckBox>
+        </StackPanel>
+        
+        <Button x:Name="AddEventButton" Content="Set Reminder" Margin="200,10,0,0" Width="80" Click="AddEventButton_Click"></Button>
     </StackPanel>
 </Window>
