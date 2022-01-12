@@ -50,6 +50,7 @@ namespace ReminderApp
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
                         // Populate all arguments in the insert
+                       // cmd.Parameters.AddWithValue("@ReminderID", reminderDetails.ReminderID);
                         cmd.Parameters.AddWithValue("@ReminderTime", reminderDetails.ReminderTime);
                         cmd.Parameters.AddWithValue("@Message", reminderDetails.Message);
                         cmd.Parameters.AddWithValue("@Email", reminderDetails.Email);
@@ -99,6 +100,32 @@ namespace ReminderApp
                 throw;
             }
             return reminders;
+        }
+
+        public void RemoveReminder(ReminderDetails reminder)
+        {
+            string sql = "UPDATE Reminders SET IsActive=0 WHERE ReminderTime=@ReminderTime AND Message=@Message AND Email=@Email";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(ToString()))
+                {
+                    conn.Open();
+
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        // Populate all arguments in the insert
+                        cmd.Parameters.AddWithValue("@ReminderTime", reminder.ReminderTime);
+                        cmd.Parameters.AddWithValue("@Message", reminder.Message);
+                        cmd.Parameters.AddWithValue("@Email", reminder.Email);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 

@@ -8,6 +8,7 @@ namespace ReminderApp
 {
     class ReminderDetails
     {
+        public int ReminderID { get; set; }
         public DateTime ReminderTime { get; set; }
         public string Message { get; set; }
         public string Email { get; set; }

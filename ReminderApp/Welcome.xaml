@@ -16,7 +16,7 @@
         </StackPanel>
         <StackPanel Orientation="Vertical">
             <Button x:Name="SetAReminder" Content="Set A Reminder" Height="40" Width="110" Margin="0,0,0,0" Click="SetAReminder_Click"/>
-            <Button x:Name="DeleteAReminder" Content="Delete A Reminder" Height="40" Width="110" Margin="0,10,0,0"/>
+            <Button x:Name="DeleteAReminder" Content="Delete A Reminder" Height="40" Width="110" Margin="0,10,0,0" Click="DeleteAReminder_Click"/>
         </StackPanel>
 
     </StackPanel>

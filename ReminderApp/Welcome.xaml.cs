@@ -30,5 +30,11 @@ namespace ReminderApp
             SetReminder setReminder = new SetReminder();
             setReminder.Show();
         }
+
+        private void DeleteAReminder_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteReminder deleteReminder = new DeleteReminder();
+            deleteReminder.Show();
+        }
     }
 }

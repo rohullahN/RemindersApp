@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Collections.ObjectModel;
 
 namespace ReminderApp
 {
@@ -19,10 +20,36 @@ namespace ReminderApp
     /// </summary>
     public partial class DeleteReminder : Window
     {
-        
+       // public ObservableCollection<ReminderDetails> Reminders { get; set; } 
+       private readonly Database db = new Database();
         public DeleteReminder()
         {
             InitializeComponent();
+            PopulateRemindersList();
+        }
+
+        private void Reminders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            RemoveButton.IsEnabled = true;
+        }
+
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            ReminderDetails selectedReminder = (ReminderDetails)Reminders.SelectedItem;
+            db.RemoveReminder(selectedReminder);
+            PopulateRemindersList();
+        }
+
+        public void PopulateRemindersList()
+        {
+            
+            List<ReminderDetails> reminders = db.GetAllReminders();
+            Reminders.ItemsSource = reminders;
         }
     }
 }

@@ -5,13 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReminderApp"
         mc:Ignorable="d"
-        Title="KoolReminders" Height="400" Width="310">
-    <Grid>
-        <DataGrid x:Name="RemindersList">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Reminder Time"/>
-                
-            </DataGrid.Columns>
-        </DataGrid>
+        Title="KoolReminders" Height="400" Width="500">
+    <Grid x:Name="RemindersList" Visibility="Visible">
+        <ListView x:Name="Reminders" Margin="0,0,0,80" SelectionMode="Single" SelectionChanged="Reminders_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ReminderID}" Width="20"/>
+                    <GridViewColumn Header="Reminder Time" DisplayMemberBinding="{Binding ReminderTime}" Width="115"/>
+                    <GridViewColumn Header="Event Title" DisplayMemberBinding="{Binding Message}" Width="150"/>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="190"/>
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+        <StackPanel Orientation="Horizontal" Margin="0,300,0,0">
+            <Button x:Name="BackButton" Content="Back" Width="110" Height="30" Margin="250,0,0,0" Click="BackButton_Click"/>
+            <Button x:Name="RemoveButton" Content="Remove Reminder" Margin="10,0,0,0" Width="110" Height="30" IsEnabled="False" Click="RemoveButton_Click"/>
+        </StackPanel>
+        
+        
     </Grid>
 </Window>
