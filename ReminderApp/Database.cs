@@ -49,8 +49,7 @@ namespace ReminderApp
 
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
-                        // Populate all arguments in the insert
-                       // cmd.Parameters.AddWithValue("@ReminderID", reminderDetails.ReminderID);
+
                         cmd.Parameters.AddWithValue("@ReminderTime", reminderDetails.ReminderTime);
                         cmd.Parameters.AddWithValue("@Message", reminderDetails.Message);
                         cmd.Parameters.AddWithValue("@Email", reminderDetails.Email);
@@ -58,8 +57,7 @@ namespace ReminderApp
                         cmd.Parameters.AddWithValue("@ThreeDayReminder", reminderDetails.ThreeDayReminder);
                         cmd.Parameters.AddWithValue("@OneDayReminder", reminderDetails.OneDayReminder);
                         cmd.Parameters.AddWithValue("@SameDayReminder", reminderDetails.SameDayReminder);
-                        // Execute the insertion and check the number of rows affected
-                        // An exception will be thrown if the column is repeated
+
                         cmd.ExecuteNonQuery();
 
                     }

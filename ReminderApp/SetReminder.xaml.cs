@@ -30,7 +30,15 @@ namespace ReminderApp
 
         private void datePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
-            myTextblock.Text = datePicker.SelectedDate.ToString();
+            if (datePicker.SelectedDate < DateTime.Today)
+            {
+                MessageBox.Show("Reminder date must not be in the past. Please select a valid date for your reminder.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                myTextblock.Text = datePicker.SelectedDate.ToString();
+            }
+            
         }
 
         private DateTime GetDateTime()
@@ -47,6 +55,7 @@ namespace ReminderApp
 
         private void TimePicker_DropDownClosed(object sender, EventArgs e)
         {
+            
             myTextblock.Text = GetDateTime().ToString();
         }
 
@@ -58,7 +67,15 @@ namespace ReminderApp
 
         private void AmPmPicker_DropDownClosed(object sender, EventArgs e)
         {
-            myTextblock.Text = GetDateTime().ToString();
+            if (GetDateTime()<DateTime.Now)
+            {
+                MessageBox.Show("Reminder date and time must not be in the past. Please select a valid time for your reminder.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                myTextblock.Text = GetDateTime().ToString();
+            }
+     
         }
 
         private void TimePicker_DropDownOpened(object sender, EventArgs e)
@@ -87,10 +104,19 @@ namespace ReminderApp
 
         private void AddEventButton_Click(object sender, RoutedEventArgs e)
         {
-            DateTime rTime = Convert.ToDateTime(myTextblock.Text);
-            ReminderDetails reminderDetails = new ReminderDetails(rTime, EventText.Text, EmailText.Text, Three, One, Same);
-            Database db = new Database();
-            db.InsertReminder(reminderDetails);
+            if(Three==0 && One==0 && Same==0)
+            {
+                MessageBox.Show("You must check at least one of the three options. Three day reminder, One day reminder, Same day reminder.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+            else
+            {
+                DateTime rTime = Convert.ToDateTime(myTextblock.Text);
+                ReminderDetails reminderDetails = new ReminderDetails(rTime, EventText.Text, EmailText.Text, Three, One, Same);
+                Database db = new Database();
+                db.InsertReminder(reminderDetails);
+                MessageBox.Show("Reminder set.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
         }
 
         private void ThreeDay_Click(object sender, RoutedEventArgs e)
