@@ -8,5 +8,7 @@ namespace SMTPService
 {
     class Service
     {
+        private readonly Timer timer;
+
     }
 }
