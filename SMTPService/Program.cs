@@ -23,6 +23,7 @@ namespace SMTPService
                 });
 
                 x.RunAsLocalSystem();
+                x.StartAutomatically();
                 x.SetServiceName("SMTPService");
                 x.SetDisplayName("Reminder Service");
                 x.SetDescription("This service checks the reminders set, and sends an email reminder to the user");

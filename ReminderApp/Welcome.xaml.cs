@@ -15,16 +15,13 @@ using System.Globalization;
 
 namespace ReminderApp
 {
-    /// <summary>
-    /// Interaction logic for Welcome.xaml
-    /// </summary>
+
     public partial class Welcome : Window
     {
         public Welcome()
         {
             InitializeComponent();
             welcomeText.Text= "Welcome " + Environment.UserName;
-
         }
 
         private void SetAReminder_Click(object sender, RoutedEventArgs e)
