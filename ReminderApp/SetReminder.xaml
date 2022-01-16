@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReminderApp"
         mc:Ignorable="d"
-        Title="KoolReminders" Height="400" Width="310">
+        Title="KoolReminders" Height="400" Width="320"
+        Icon="logo.png">
     <StackPanel>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,20,0,20">
             <TextBlock x:Name="SetReminderText" Text="Set A Reminder" FontFamily="Impact" FontSize="18" Width="120" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
            <TextBlock Text="Event Date: "/> 
            <DatePicker x:Name="datePicker" Width="200" Margin="20,0,0,0" SelectedDateFormat="Short" SelectedDateChanged="datePicker_SelectedDateChanged"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+        <StackPanel Orientation="Horizontal" Margin="10,10,0,0">
             <TextBlock Text="Event Time: "/>
             <ComboBox x:Name="TimePicker" FontSize="20" Width="100" HorizontalAlignment="Center" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="31" MaxDropDownHeight="200" Margin="20,0,0,0" DropDownClosed="TimePicker_DropDownClosed" DropDownOpened="TimePicker_DropDownOpened">
 
@@ -48,21 +49,21 @@
                 <ComboBoxItem Content="PM"/>
             </ComboBox>
         </StackPanel>
-        <TextBlock x:Name="myTextblock" Text="" HorizontalAlignment="Center"/>
-        <StackPanel Orientation="Horizontal">
+        <TextBlock x:Name="myTextblock" Text="" HorizontalAlignment="Center" Margin="10,0,0,0"/>
+        <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
             <TextBlock Text="Event Title: "/>
             <TextBox  x:Name="EventText" Width="200" Margin="23,0,0,0" Height="60"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+        <StackPanel Orientation="Horizontal" Margin="10,20,0,0">
             <TextBlock Text="Email: "/> 
-            <TextBox  x:Name="EmailText" Width="200" Margin="50,0,0,0" Height="30"/>
+            <TextBox  x:Name="EmailText" Width="200" Margin="50,0,0,0" Height="30" VerticalContentAlignment="Center"/>
         </StackPanel>
-        <StackPanel  Margin="0,20,0,0">
-            <CheckBox x:Name="ThreeDay" Content="Three Day reminder" FontSize="12" Click="ThreeDay_Click"></CheckBox>
-            <CheckBox x:Name="OneDay" Content="One Day reminder" FontSize="12" Click="OneDay_Click"></CheckBox>
-            <CheckBox x:Name="SameDay" Content="Same Day reminder" FontSize="12" Click="SameDay_Click"></CheckBox>
+        <StackPanel  Margin="10,20,0,0">
+            <CheckBox x:Name="ThreeDay" Content="Three Day reminder" FontSize="12" Click="ThreeDay_Click" IsEnabled="False"></CheckBox>
+            <CheckBox x:Name="OneDay" Content="One Day reminder" FontSize="12" Click="OneDay_Click" IsEnabled="False"></CheckBox>
+            <CheckBox x:Name="SameDay" Content="Same Day reminder" FontSize="12" Click="SameDay_Click" IsEnabled="False"></CheckBox>
         </StackPanel>
         
-        <Button x:Name="AddEventButton" Content="Set Reminder" Margin="200,10,0,0" Width="80" Click="AddEventButton_Click"></Button>
+        <Button x:Name="AddEventButton" Content="Set Reminder" Margin="190,10,0,0" Width="80" Click="AddEventButton_Click"></Button>
     </StackPanel>
 </Window>

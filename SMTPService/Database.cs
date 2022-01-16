@@ -34,15 +34,38 @@ namespace SMTPService
             return $"server={Server};user={User};database={DatabaseName};port={Port};password={Password}; convert zero datetime=True";
         }
 
-        public List<ReminderDetails> GetOneDayReminders()
+        public List<ReminderDetails> GetReminders(int state)
         {
             List<ReminderDetails> reminders = new List<ReminderDetails>();
-            string sql = "select * from reminders where IsActive=1 AND SameDayReminder=1 AND datediff(ReminderTime, now())=0";
+            string statestr;
+            int diff;
+            switch(state)
+            {
+                case 0:
+                    statestr = "SameDayReminder";
+                    diff = 0;
+                    break;
+                case 1:
+                    statestr = "OneDayReminder";
+                    diff = 1;
+                    break;
+                case 2:
+                    statestr = "ThreeDayReminder";
+                    diff = 3;
+                    break;
+                default:
+                    statestr = "";
+                    diff = 0;
+                    break;
+            }
+            string sql = $"select * from reminders where IsActive=1 AND {statestr}=1 AND datediff(ReminderTime, @CurrentDatetime)={diff}";
+
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(ToString()))
                 {
                     MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@CurrentDatetime", DateTime.Now);
                     conn.Open();
                     MySqlDataReader rdr = cmd.ExecuteReader();
                     if (rdr.HasRows)
@@ -59,7 +82,9 @@ namespace SMTPService
                             reminders.Add(reminderDetails);
                         }
                     }
+                    cmd.Dispose();
                 }
+
             }
             catch (Exception)
             {
@@ -94,9 +119,25 @@ namespace SMTPService
             }
         }
 
-        public void UpdateOneDay(ReminderDetails reminder)
+        public void UpdateReminder(ReminderDetails reminder, int state)
         {
-            string sql = "UPDATE Reminders SET OneDayReminder=0 WHERE ReminderTime=@ReminderTime AND Message=@Message AND Email=@Email";
+            string statestr;
+            switch (state)
+            {
+                case 0:
+                    statestr = "SameDayReminder";
+                    break;
+                case 1:
+                    statestr = "OneDayReminder";
+                    break;
+                case 2:
+                    statestr = "ThreeDayReminder";
+                    break;
+                default:
+                    statestr = "";
+                    break;
+            }
+            string sql = $"UPDATE Reminders SET {statestr}=0 WHERE ReminderTime=@ReminderTime AND Message=@Message AND Email=@Email";
 
             try
             {

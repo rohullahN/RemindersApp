@@ -63,6 +63,23 @@ namespace ReminderApp
         private void AmPmPicker_LostFocus(object sender, RoutedEventArgs e)
         {
             myTextblock.Text = GetDateTime().ToString();
+            DateTime date = DateTime.Parse(myTextblock.Text);
+            if (date==DateTime.Today)
+            {
+                SameDay.IsEnabled = true;
+                
+            }
+            else if((date-DateTime.Today).Days>=1 && (date - DateTime.Today).Days <3)
+            {
+                SameDay.IsEnabled = true;
+                OneDay.IsEnabled = true;
+            }
+            else if((date - DateTime.Today).Days >= 3)
+            {
+                SameDay.IsEnabled = true;
+                OneDay.IsEnabled = true;
+                ThreeDay.IsEnabled = true;
+            }
         }
 
         private void AmPmPicker_DropDownClosed(object sender, EventArgs e)
@@ -75,7 +92,23 @@ namespace ReminderApp
             {
                 myTextblock.Text = GetDateTime().ToString();
             }
-     
+            DateTime date = DateTime.Parse(myTextblock.Text);
+            if (date.Date == DateTime.Today)
+            {
+                SameDay.IsEnabled = true;
+            }
+            else if ((date - DateTime.Today).Days >= 1 && (date - DateTime.Today).Days < 3)
+            {
+                SameDay.IsEnabled = true;
+                OneDay.IsEnabled = true;
+            }
+            else if ((date - DateTime.Today).Days >= 3)
+            {
+                SameDay.IsEnabled = true;
+                OneDay.IsEnabled = true;
+                ThreeDay.IsEnabled = true;
+            }
+
         }
 
         private void TimePicker_DropDownOpened(object sender, EventArgs e)
@@ -108,6 +141,10 @@ namespace ReminderApp
             {
                 MessageBox.Show("You must check at least one of the three options. Three day reminder, One day reminder, Same day reminder.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+            else if(EmailText.Text == "" || EventText.Text=="")
+            {
+                MessageBox.Show("You must provide an email and event title for your reminder.", "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
             else
             {
                 DateTime rTime = Convert.ToDateTime(myTextblock.Text);
@@ -115,6 +152,7 @@ namespace ReminderApp
                 Database db = new Database();
                 db.InsertReminder(reminderDetails);
                 MessageBox.Show("Reminder set.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                this.Close();
             }
 
         }

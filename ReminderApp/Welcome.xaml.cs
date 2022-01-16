@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Globalization;
 
 namespace ReminderApp
 {
@@ -23,6 +24,7 @@ namespace ReminderApp
         {
             InitializeComponent();
             welcomeText.Text= "Welcome " + Environment.UserName;
+
         }
 
         private void SetAReminder_Click(object sender, RoutedEventArgs e)

@@ -4,13 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Topshelf;
-
+using System.Globalization;
 namespace SMTPService
 {
     class Program
     {
         static void Main(string[] args)
         {
+            TimeZone localZone = TimeZone.CurrentTimeZone;
+            Console.WriteLine(localZone.StandardName);
             var exitCode = HostFactory.Run(x =>
             {
                 x.Service<EmailService>(s =>

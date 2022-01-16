@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReminderApp"
         mc:Ignorable="d"
-        Title="KoolReminders" Height="400" Width="310">
+        Title="KoolReminders" Height="400" Width="310"
+        Icon="logo.png">
     <StackPanel>
         <StackPanel VerticalAlignment="center" HorizontalAlignment="center" Margin="0,0,0,20">
             <TextBlock Text="Kool Reminders" FontSize="18" HorizontalAlignment="center" Margin="0,20,0,20" />

@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReminderApp"
         mc:Ignorable="d"
-        Title="KoolReminders" Height="400" Width="500">
+        Title="KoolReminders" Height="400" Width="500"
+        Icon="logo.png">
     <Grid x:Name="RemindersList" Visibility="Visible">
         <ListView x:Name="Reminders" Margin="0,0,0,80" SelectionMode="Single" SelectionChanged="Reminders_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding ReminderID}" Width="20"/>
                     <GridViewColumn Header="Reminder Time" DisplayMemberBinding="{Binding ReminderTime}" Width="115"/>
                     <GridViewColumn Header="Event Title" DisplayMemberBinding="{Binding Message}" Width="150"/>
-                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="190"/>
+                    <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="235" />
                 </GridView>
             </ListView.View>
 
