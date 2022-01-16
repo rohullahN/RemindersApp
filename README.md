@@ -6,7 +6,16 @@ This application is a working prototype that effectively mimics the functionalit
 
 The application was developed in C# with the use of Windows Presentation Foundation (WPF) framework to design the user interface. It is supportd with a MySQL Database which stores all reminders set by the user. The project also consists of a windows service that will run automotically in the background and poll the database for changes, every 10 minutes.
 
-## Live Demo
+# Service Installation
+## In order to install the reminder service and have it run, the following must be done
+- After having cloned the repo, open a command prompt **as an administrator**
+- Navigate to the location of the repository then run the following command:
+  -  >cd RemindersApp\SMTPService\bin\Debug
+- Next, run the following command:
+  - >SMTPService.exe install start
+- If done correctly, the following screen can be seen:
+![Install](https://user-images.githubusercontent.com/41601768/149646638-e050819e-1d59-428b-bb82-8867a5442f19.PNG)
+
 
 ## Tech Stack
 - **User Interface**: Windows Presentation Foundation (WPF)
