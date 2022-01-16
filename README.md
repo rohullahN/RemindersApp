@@ -8,12 +8,12 @@ The application was developed in C# with the use of Windows Presentation Foundat
 
 # Service Installation
 ## In order to install the reminder service and have it run, the following must be done
-- After having cloned the repo, open a command prompt **as an administrator**
-- Navigate to the location of the repository then run the following command:
-  -  >cd RemindersApp\SMTPService\bin\Debug
-- Next, run the following command:
-  - >SMTPService.exe install start
-- If done correctly, the following screen can be seen:
+1. After having cloned the repo, open a command prompt **as an administrator**
+2. Navigate to the location of the repository then run the following command:
+  2.  >cd RemindersApp\SMTPService\bin\Debug
+3. Next, run the following command:
+  3. >SMTPService.exe install start
+4. If done correctly, the following screen can be seen:
 ![Install](https://user-images.githubusercontent.com/41601768/149646638-e050819e-1d59-428b-bb82-8867a5442f19.PNG)
 
 
