@@ -13,7 +13,7 @@ namespace SMTPService
     class EmailService
     {
        private readonly Timer timer;
-        private readonly TimeSpan timeSpan = new TimeSpan(0, 0, 1, 0);
+        private readonly TimeSpan timeSpan = new TimeSpan(0, 0, 10, 0);
         private readonly Database db = new Database();
 
 
