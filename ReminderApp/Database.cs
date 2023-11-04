@@ -21,11 +21,11 @@ namespace ReminderApp
 
         public Database()
         {
-            Server = ConfigurationManager.AppSettings.Get("Server");
-            User = ConfigurationManager.AppSettings.Get("User");
-            Port = ConfigurationManager.AppSettings.Get("Port");
-            Password = ConfigurationManager.AppSettings.Get("Password");
-            DatabaseName = ConfigurationManager.AppSettings.Get("DatabaseName");
+            Server = "i0rgccmrx3at3wv3.cbetxkdyhwsb.us-east-1.rds.amazonaws.com";
+            User = "r4mqsn19147cbkp3";
+            Port = "3306";
+            Password = "slbef5y8np061xyy";
+            DatabaseName = "rsm2e6oey297th9b";
 
         }
 
