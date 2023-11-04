@@ -36,27 +36,51 @@ namespace ReminderApp
 
         public void InsertReminder(ReminderDetails reminderDetails)
         {
+            //string sql = "INSERT INTO Reminders (ReminderTime, Message, Email, IsActive, ThreeDayReminder, OneDayReminder, SameDayReminder) " +
+            //    "VALUES (@ReminderTime, @Message, @Email, @IsActive, @ThreeDayReminder, @OneDayReminder, @SameDayReminder)";
+            //try
+            //{
+            //    using (MySqlConnection conn = new MySqlConnection(ToString()))
+            //    {
+            //        conn.Open();
+
+            //        using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+            //        {
+
+            //            cmd.Parameters.AddWithValue("@ReminderTime", reminderDetails.ReminderTime);
+            //            cmd.Parameters.AddWithValue("@Message", reminderDetails.Message);
+            //            cmd.Parameters.AddWithValue("@Email", reminderDetails.Email);
+            //            cmd.Parameters.AddWithValue("@IsActive", 1);
+            //            cmd.Parameters.AddWithValue("@ThreeDayReminder", reminderDetails.ThreeDayReminder);
+            //            cmd.Parameters.AddWithValue("@OneDayReminder", reminderDetails.OneDayReminder);
+            //            cmd.Parameters.AddWithValue("@SameDayReminder", reminderDetails.SameDayReminder);
+
+            //            cmd.ExecuteNonQuery();
+
+            //        }
+            //    }
+            //}
+            //catch (Exception e)
+            //{
+            //    Console.WriteLine("ERROR: " + e.Message);
+            //}
             string sql = "INSERT INTO Reminders (ReminderTime, Message, Email, IsActive, ThreeDayReminder, OneDayReminder, SameDayReminder) " +
-                "VALUES (@ReminderTime, @Message, @Email, @IsActive, @ThreeDayReminder, @OneDayReminder, @SameDayReminder)";
+                "VALUES ('" + reminderDetails.ReminderTime.ToString().Replace("'", "''") +
+                "', '" + reminderDetails.Message.Replace("'", "''") +
+                "', '" + reminderDetails.Email.Replace("'", "''") +
+                "', " + "1" +
+                ", " + reminderDetails.ThreeDayReminder +
+                ", " + reminderDetails.OneDayReminder +
+                ", " + reminderDetails.SameDayReminder + ")";
+
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(ToString()))
                 {
                     conn.Open();
-
                     using (MySqlCommand cmd = new MySqlCommand(sql, conn))
                     {
-
-                        cmd.Parameters.AddWithValue("@ReminderTime", reminderDetails.ReminderTime);
-                        cmd.Parameters.AddWithValue("@Message", reminderDetails.Message);
-                        cmd.Parameters.AddWithValue("@Email", reminderDetails.Email);
-                        cmd.Parameters.AddWithValue("@IsActive", 1);
-                        cmd.Parameters.AddWithValue("@ThreeDayReminder", reminderDetails.ThreeDayReminder);
-                        cmd.Parameters.AddWithValue("@OneDayReminder", reminderDetails.OneDayReminder);
-                        cmd.Parameters.AddWithValue("@SameDayReminder", reminderDetails.SameDayReminder);
-
                         cmd.ExecuteNonQuery();
-
                     }
                 }
             }
