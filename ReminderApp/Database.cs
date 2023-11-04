@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
 using MySql.Data.MySqlClient;
 
@@ -63,9 +60,9 @@ namespace ReminderApp
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                Console.WriteLine("ERROR: " + e.Message);
             }
         }
 
@@ -93,9 +90,9 @@ namespace ReminderApp
                     }
                 }
             }
-            catch(Exception)
+            catch (Exception e)
             {
-                throw;
+                Console.WriteLine("ERROR: " + e.Message);
             }
             return reminders;
         }
@@ -120,9 +117,9 @@ namespace ReminderApp
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                Console.WriteLine("ERROR: " + e.Message);
             }
         }
     }
