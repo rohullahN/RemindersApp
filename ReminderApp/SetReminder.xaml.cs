@@ -43,7 +43,7 @@ namespace ReminderApp
 
         private DateTime GetDateTime()
         {
-            DateTime dt = new DateTime();
+            DateTime dt;
 
                 string date = datePicker.Text;
                 string time = TimePicker.Text + AmPmPicker.Text;
